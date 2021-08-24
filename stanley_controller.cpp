@@ -53,7 +53,7 @@ void StanleyController::Update(VehicleState &state,float acc,float delta,
                                StanleyParams StyPar,VehicleParams VehPar){
     state.x = state.x + state.line_v * cos(state.yaw) * StyPar.ts();
     state.y = state.y + state.line_v * sin(state.yaw) * StyPar.ts();
-    state.yaw = state.yaw + state.line_v / VehPar.wheel_base() * tan(delta);
+    state.yaw = state.yaw + state.line_v / VehPar.wheel_base() * tan(delta) * StyPar.ts();
     state.line_v = state.line_v + acc *StyPar.ts();
 }
 float StanleyController::stanley_controller(VehicleState state,std::vector<Trajectory> trajectory_,
